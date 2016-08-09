@@ -1,0 +1,175 @@
+#!/bin/bash
+#
+# setup-Rapp-solarized: set up Solarized colorscheme in R.app
+#
+# Usage:
+#
+#  setup-Rapp-solarized [scheme]
+#  setup-Rapp-solarized list
+#
+# Where the optional [scheme] is the name of a colorscheme variant defined in this script.
+#
+# The "list" form will list the defined colorscheme variants. 
+
+# Palette definition in R.app plist value terms
+
+# Palette with base64-encoded values for XML plist form
+function define_palette_xml() {
+	Base03='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmAIOtrCw+g9nYWD4Bhg=='
+	Base02='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg+Hg4DyD2dhYPoOFhIQ+AYY='
+	Base01='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg7GwsD6D3dzcPoPr6uo+AYY='
+	Base00='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg8vKyj6D9/b2PoOEgwM/AYY='
+	Base0='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg4SDAz+DlZQUP4OXlhY/AYY='
+	Base1='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg5STEz+DoqEhP4OioSE/AYY='
+	Base2='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg+/ubj+D6ehoP4PW1VU/AYY='
+	Base3='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg/79fT+D9/Z2P4Pk42M/AYY='
+
+	Yellow='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg7a1NT+DiokJPwABhg=='
+	Orange='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg8zLSz+Dl5aWPoOxsLA9AYY='
+	Red='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg93cXD+DychIPoO9vDw+AYY='
+	Magenta='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg9TTUz+D2dhYPoODggI/AYY='
+	Violet='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg9nY2D6D4+LiPoPFxEQ/AYY='
+	Blue='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg5mYGD6DjIsLP4PT0lI/AYY='
+	Cyan='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg6moKD6DoqEhP4OZmBg/AYY='
+	Green='BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmg4aFBT+DmpkZPwABhg=='
+}
+
+# Palette with hex-encoded values for use with "defaults write"
+function define_palette() {
+	Base03='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 66660083 adac2c3e 83d9d858 3e0186>'
+	Base02='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683e1 e0e03c83 d9d8583e 83858484 3e0186>'
+	Base01='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683b1 b0b03e83 dddcdc3e 83ebeaea 3e0186>'
+	Base00='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683cb caca3e83 f7f6f63e 83848303 3f0186>'
+	Base0='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 66668384 83033f83 9594143f 83979616 3f0186>'
+	Base1='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 66668394 93133f83 a2a1213f 83a2a121 3f0186>'
+	Base2='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683ef ee6e3f83 e9e8683f 83d6d555 3f0186>'
+	Base3='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683fe fd7d3f83 f7f6763f 83e4e363 3f0186>'
+
+	Yellow='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683b6 b5353f83 8a89093f 000186>'
+	Orange='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683cc cb4b3f83 9796963e 83b1b0b0 3d0186>'
+	Red='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683dd dc5c3f83 c9c8483e 83bdbc3c 3e0186>'
+	Magenta='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683d4 d3533f83 d9d8583e 83838202 3f0186>'
+	Violet='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683d9 d8d83e83 e3e2e23e 83c5c444 3f0186>'
+	Blue='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 66668399 98183e83 8c8b0b3f 83d3d252 3f0186>'
+	Cyan='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 666683a9 a8283e83 a2a1213f 83999818 3f0186>'
+	Green='<040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016301 84046666 66668386 85053f83 9a99193f 000186>'
+}
+
+
+function define_colorscheme_solarized_light() {
+	# Console
+	Input="$Base01"
+	Output="$Base00"
+	Prompt="$Cyan"
+	Stderr="$Magenta"
+	Stdout="$Output"
+	Background="$Base3"
+	# Editor
+	EditorNormal="$Base00"
+	EditorComment="Base1"
+	EditorIdentifier="$Green"
+	EditorKeyword="$Green"
+	EditorString="$Cyan"
+	EditorNumber="$Cyan"
+	EditorBackground="$Base3"
+	EditorCursor="$Base01"
+	EditorCurrentLine="$Base2"
+	EditorSelection="$Blue"
+}
+
+
+function define_colorscheme_solarized_dark() {
+	# Console
+	Input="$Base1"
+	Output="$Base0"
+	Prompt="$Cyan"
+	Stderr="$Magenta"
+	Stdout="$Output"
+	Background="$Base03"
+	# Editor
+	EditorNormal="$Base0"
+	EditorComment="Base01"
+	EditorIdentifier="$Green"
+	EditorKeyword="$Green"
+	EditorString="$Cyan"
+	EditorNumber="$Cyan"
+	EditorBackground="$Base03"
+	EditorCursor="$Base1"
+	EditorCurrentLine="$Base02"
+	EditorSelection="$Blue"
+}
+
+function write_colors_to_preferences() {
+	domain="org.R-project.R"
+	defaults write $domain "Input Color" "$Input"
+	defaults write $domain "Output Color" "$Output"
+	defaults write $domain "Prompt Color" "$Prompt"
+	defaults write $domain "Stderr Color" "$Stderr"
+	defaults write $domain "Stdout Color" "$Stdout"
+	defaults write $domain "Background Color" "$Background"
+
+	defaults write $domain "Normal Syntax Color" "$EditorNormal"
+	defaults write $domain "Comment Syntax Color" "$EditorComment"
+	defaults write $domain "Identifier Syntax Color" "$EditorIdentifier"
+	defaults write $domain "Keyword Syntax Color" "$EditorKeyword"
+	defaults write $domain "Number Syntax Color" "$EditorNumber"
+	defaults write $domain "String Syntax Color" "$EditorString"
+	defaults write $domain "RScriptEditorBackgroundColor" "$EditorBackground"
+	defaults write $domain "RScriptEditorCursorColor" "$EditorCursor"
+	defaults write $domain "RScriptEditorHighlightCurrentLineColor" "$EditorCurrentLine"
+	defaults write $domain "RScriptEditorSelectionColor" "$EditorSelection"
+}
+
+function list_colorschemes() {
+	echo solarized-light
+	echo solarized-dark
+}
+
+function main() {
+	if [[ "$1" -eq "list" ]]; then
+		list_colorschemes
+		exit 0
+	fi
+
+	scheme="$1"
+	if [[ -z "$scheme" ]]; then
+		scheme=solarized-light
+	fi
+
+	define_palette
+
+	case "$scheme" in
+		solarized-light)
+			define_colorscheme_solarized_light
+			;;
+		solarized-dark)
+			define_colorscheme_solarized_dark
+			;;
+		*)
+			echo >&2 "No such colorscheme: $scheme"
+			exit 1
+			;;
+	esac
+
+	write_colors_to_preferences
+}
+
+main "$*"
+
+

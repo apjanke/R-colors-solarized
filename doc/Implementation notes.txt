@@ -1,0 +1,32 @@
+Color plist keys
+
+As "<Plist key> - <preferences panel label>"
+
+Console colors:
+
+Input Color - Input
+Output Color - Output
+Prompt Color - Prompt
+Stderr Color - Stderr
+Stdout Color - Stdout
+Background Color - Background
+
+Syntax colors:
+
+Normal Syntax Color - Normal
+Comment Syntax Color - Comment
+Identifier Syntax Color - Identifier
+Keyword Syntax Color - Keyword
+Number Syntax Color - Number
+String Syntax Color - String
+RScriptEditorBackgroundColor - Background
+RScriptEditorCursorColor - Cursor
+RScriptEditorHighlightCurrentLineColor - Current Line
+RScriptEditorSelectionColor - (not in preferences)
+
+Unknown-use colors:
+
+Root Color
+Selection Color
+
+
