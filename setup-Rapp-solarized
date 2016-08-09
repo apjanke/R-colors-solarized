@@ -142,7 +142,7 @@ function list_colorschemes() {
 }
 
 function main() {
-	if [[ "$1" -eq "list" ]]; then
+	if [[ "$1" == "list" ]]; then
 		list_colorschemes
 		exit 0
 	fi
