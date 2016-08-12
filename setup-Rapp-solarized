@@ -104,7 +104,7 @@ function list_colorschemes() {
 }
 
 function main() {
-	if [[ "$1" == "list" ]]; then
+	if [[ "$1" == "-l" ]]; then
 		list_colorschemes
 		exit 0
 	fi
