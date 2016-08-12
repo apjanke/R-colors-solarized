@@ -5,11 +5,11 @@
 # Usage:
 #
 #  setup-Rapp-solarized [scheme]
-#  setup-Rapp-solarized list
+#  setup-Rapp-solarized -l
 #
 # Where the optional [scheme] is the name of a colorscheme variant defined in this script.
 #
-# The "list" form will list the defined colorscheme variants. 
+# The -l ("list") form will list the defined colorscheme variants. 
 
 # Palette definition in R.app plist value terms
 # Uses hex-encoded values for use with "defaults write"
