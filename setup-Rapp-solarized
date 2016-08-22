@@ -39,7 +39,7 @@ function define_colorscheme_solarized_light() {
 	Input="$Base01"
 	Output="$Base00"
 	Prompt="$Cyan"
-	Stderr="$Magenta"
+	Stderr="$Orange"
 	Stdout="$Output"
 	Background="$Base3"
 	# Editor
@@ -61,7 +61,7 @@ function define_colorscheme_solarized_dark() {
 	Input="$Base1"
 	Output="$Base0"
 	Prompt="$Cyan"
-	Stderr="$Magenta"
+	Stderr="$Orange"
 	Stdout="$Output"
 	Background="$Base03"
 	# Editor
